@@ -2,5 +2,5 @@ spring:
   application:
     name: cw-live-streaming-api
 server:
-  port: 8083
+  port: 8883
 

@@ -1,11 +1,11 @@
 package com.example.cwLiveStreamingProvider;
 
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+//import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableDubbo
+//@EnableDubbo
 public class CwLiveStreamingProviderApplication {
 
     public static void main(String[] args) {
