@@ -1,0 +1,32 @@
+# Maven
+/target/
+!/target/classes/
+!/target/test-classes/
+
+# IntelliJ IDEA
+/.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.class
+
+# Spring Boot
+/application.yml
+/application-local.yml
+/application-prod.yml
+/spring-configuration-metadata.json
+
+# Lombok
+.lombok/
+
+
+.config/

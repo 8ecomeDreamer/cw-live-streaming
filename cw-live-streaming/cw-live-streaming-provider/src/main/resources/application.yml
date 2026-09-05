@@ -1,0 +1,5 @@
+spring:
+    application:
+        name: cw-live-streaming-provider
+server:
+    port: 8081
