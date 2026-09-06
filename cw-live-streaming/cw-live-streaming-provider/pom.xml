@@ -15,8 +15,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-
-    <!--    依赖-->
+    <!--    依赖引入-->
     <dependencies>
         <!-- Web 支持（如果需要 HTTP 接口） -->
         <dependency>
@@ -30,6 +29,44 @@
             <scope>test</scope>
         </dependency>
 
+        <!--        nacos服务注册 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!--        nacos服务发现 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <!-- 写你真实启动类全限定名 -->
+                    <mainClass>com.example.cwLiveStreamingProvider.CwLiveStreamingProviderApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
