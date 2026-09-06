@@ -8,4 +8,4 @@ spring:
       config:
         namespace: cw-live-streaming
       discovery:
-        namespace: cw‑live‑streaming
+        namespace: 91a68c50-3cce-4fd2-9f2e-0b02fb7d1bc4

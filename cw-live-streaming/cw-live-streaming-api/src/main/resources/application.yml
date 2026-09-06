@@ -1,12 +1,6 @@
 spring:
     application:
         name: cw-live-streaming-api
-    config:
-        import[0]:
-            "nacos:springclouddemo2023x:properties?group=DEFAULT_GROUP"
-    cloud:
-        nacos:
-            server-addr: 127.0.0.1:8848
 server:
     port: 8882
 
