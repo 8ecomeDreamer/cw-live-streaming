@@ -1,359 +1,868 @@
-CREATE DATABASE IF NOT EXISTS order_db_0 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_0;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
+-- ============================================================
+-- 直播订单分库分表 DDL
+-- 分库：4个库  cw-live-streaming_order_0 ~ order_3
+-- 分表：每库8张  cw-live-streaming_t_order_0 ~ t_order_7
+-- 总分片数：4 x 8 = 32
+-- 分片键：user_id
+-- 分片算法：user_id % 32 -> 库索引 = (mod / 8)，表索引 = mod % 8
+-- ============================================================
 
-CREATE DATABASE IF NOT EXISTS order_db_1 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_1;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
+-- ====================== 库 0 ======================
+CREATE DATABASE IF NOT EXISTS `cw-live-streaming_order_0`
+  DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `cw-live-streaming_order_0`;
 
-CREATE DATABASE IF NOT EXISTS order_db_2 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE order_db_2;
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_2;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
 
-CREATE DATABASE IF NOT EXISTS order_db_3 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE order_db_3;
-CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
-USE order_db_3;
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
 CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
-  id BIGINT AUTO_INCREMENT COMMENT '主键',
-  order_no VARCHAR(64) NOT NULL COMMENT '订单号',
-  user_id BIGINT NOT NULL COMMENT '分片键用户ID',
-  amount DECIMAL(18,2) DEFAULT 0,
-  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-  update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  KEY idx_user_id(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单分表';
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+-- ====================== 库 1 ======================
+CREATE DATABASE IF NOT EXISTS `cw-live-streaming_order_1`
+  DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `cw-live-streaming_order_1`;
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+-- ====================== 库 2 ======================
+CREATE DATABASE IF NOT EXISTS `cw-live-streaming_order_2`
+  DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `cw-live-streaming_order_2`;
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+-- ====================== 库 3 ======================
+CREATE DATABASE IF NOT EXISTS `cw-live-streaming_order_3`
+  DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `cw-live-streaming_order_3`;
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_0` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_1` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_2` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_3` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_4` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_5` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_6` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+CREATE TABLE IF NOT EXISTS `cw-live-streaming_t_order_7` (
+                                                             id            BIGINT       NOT NULL COMMENT '分布式雪花ID（业务层生成，禁止AUTO_INCREMENT）',
+                                                             order_no      VARCHAR(64)  NOT NULL COMMENT '全局唯一订单号',
+    user_id       BIGINT       NOT NULL COMMENT '分片键：下单用户ID',
+    anchor_id     BIGINT       NOT NULL DEFAULT 0 COMMENT '主播ID',
+    live_room_id  BIGINT       NOT NULL DEFAULT 0 COMMENT '直播间ID',
+    sku_id        BIGINT       NOT NULL DEFAULT 0 COMMENT '商品SKU ID',
+    goods_title   VARCHAR(128) NOT NULL DEFAULT '' COMMENT '商品标题（冗余，避免join）',
+    goods_num     INT          NOT NULL DEFAULT 1 COMMENT '购买数量',
+    order_status  TINYINT      NOT NULL DEFAULT 1 COMMENT '订单状态 1待支付 2已支付 3已发货 4已完成 5已取消',
+    pay_status    TINYINT      NOT NULL DEFAULT 0 COMMENT '支付状态 0未支付 1已支付 2退款中 3已退款',
+    total_amount  DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '订单总金额',
+    pay_amount    DECIMAL(18,2) NOT NULL DEFAULT 0 COMMENT '实付金额',
+    pay_type      TINYINT      NOT NULL DEFAULT 0 COMMENT '支付方式 0未支付 1微信 2支付宝 3余额',
+    pay_time      DATETIME     NULL COMMENT '支付时间',
+    create_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_order_no (order_no),
+    KEY idx_user_id (user_id),
+    KEY idx_live_room_id (live_room_id),
+    KEY idx_anchor_id (anchor_id),
+    KEY idx_order_status (order_status),
+    KEY idx_create_time (create_time)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='直播订单分表';
+
+-- ============================================================
+-- 回滚用（测试完直接执行）：
+-- DROP DATABASE IF EXISTS `cw-live-streaming_order_0`;
+-- DROP DATABASE IF EXISTS `cw-live-streaming_order_1`;
+-- DROP DATABASE IF EXISTS `cw-live-streaming_order_2`;
+-- DROP DATABASE IF EXISTS `cw-live-streaming_order_3`;
+-- ============================================================
