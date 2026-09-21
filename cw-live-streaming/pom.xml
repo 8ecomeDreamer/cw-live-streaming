@@ -17,6 +17,10 @@
         <spring-boot.version>3.2.4</spring-boot.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <spring-cloud-starter-alibaba-nacos-config.version>2023.0.1.0</spring-cloud-starter-alibaba-nacos-config.version>
+        <dubbo.version>3.3.0</dubbo.version>
+        <dubbo-nacos-client.version>3.0.5</dubbo-nacos-client.version>
+        <sharding-jdbc.version>5.5.4</sharding-jdbc.version>
+        <shardingsphere-jdbc.version>5.5.3</shardingsphere-jdbc.version>
 
 <!--        maven-->
         <maven.compiler.source>17</maven.compiler.source>
@@ -76,8 +80,49 @@
                 <version>${spring-cloud-starter-alibaba-nacos-config.version}</version>
             </dependency>
 
+<!--            Dubbo-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- Dubbo Nacos registry dependency -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo-nacos-client.version}</version>
+            </dependency>
+            <!-- Alibaba Spring Context extension -->
+            <dependency>
+                <groupId>com.alibaba.spring</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>1.0.11</version>
+            </dependency>
+
+
+<!--            sharding-jdbc-core-->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>${sharding-jdbc.version}</version>
+            </dependency>
+
+
+<!--            shardingsphere-jdbc-->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc</artifactId>
+                <version>${shardingsphere-jdbc.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.shardingsphere</groupId>
+                        <artifactId>shardingsphere-test-util</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <pluginManagement>
@@ -98,6 +143,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
 
 </project>

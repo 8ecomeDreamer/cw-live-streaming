@@ -55,7 +55,22 @@
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
 
-
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <!-- 写你真实启动类全限定名 -->
+                    <mainClass>com.example.cwLiveStreamingApi.CwLiveStreamingApiApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
