@@ -4,5 +4,51 @@ spring:
 server:
     port: 8881
 
+#    shardingsphere
+    shardingsphere:
+        datasource:
+            names: ds0,ds1
+            ds0:
+                type: com.alibaba.druid.pool.DruidDataSource
+                driver‑class‑name: com.mysql.cj.jdbc.Driver
+                url: jdbc:mysql://127.0.0.1:3306/cw‑live‑streaming_order_0?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Shanghai
+                username: root
+                password: root
+            ds1:
+                type: com.alibaba.druid.pool.DruidDataSource
+                driver‑class‑name: com.mysql.cj.jdbc.Driver
+                url: jdbc:mysql://127.0.0.1:3306/cw‑live‑streaming_order_1?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Shanghai
+                username: root
+                password: root
+        rules:
+            sharding:
+                tables:
+                    # 【逻辑表名】！业务代码/mapper只写这个，不带后缀_0/_1
+                    cw‑live‑streaming_t_order:
+                        actual‑data‑nodes: ds$->{0..1}.cw‑live‑streaming_t_order_$->{0..3}
+                        # 分库策略：标准分片
+                        database‑strategy:
+                            standard:
+                                sharding‑column: user_id # 分库分片键：用户ID
+                                sharding‑algorithm‑name: mod‑db‑2
+                        # 分表策略：标准分片
+                        table‑strategy:
+                            standard:
+                                sharding‑column: user_id # 分表也用user_id，**库、表共用同一个分片键**
+                                sharding‑algorithm‑name: mod‑table‑4
+                sharding‑algorithms:
+                    mod‑db‑2:
+                        type: MOD # 取模算法
+                        props:
+                            sharding‑count: 2 # 对2取模 → user_id % 2，结果0走ds0，结果1走ds1
+                    mod‑table‑4:
+                        type: MOD
+                        props:
+                            sharding‑count: 4 # 对4取模 → user_id %4，决定库内落到哪一张表(0/1/2/3)
+        props:
+            sql‑show: true # ✅开发一定要打开，控制台打印真实路由SQL，可以看到落到哪个库哪张表
 
-
+# mybatis‑plus配置
+mybatis‑plus:
+    mapper‑locations: classpath:mapper/**/*.xml
+    type‑aliases‑package: com.example.cwLiveStream.entity
